@@ -191,6 +191,8 @@ namespace OOPCrashCourse
     {
         private string name;
 
+        private int population;
+
         public Country()
         {
 
@@ -199,8 +201,10 @@ namespace OOPCrashCourse
         public Country(string name)
         {
             Name = name;
-            Actors = new List<Actor>();
+            //Actors = new List<Actor>();
         }
+
+        //public string Name { get; set; }
 
         public string Name
         {
@@ -220,26 +224,41 @@ namespace OOPCrashCourse
             }
         }
 
-        public List<Actor> Actors { get; set; }
+        public int Population
+        {
+            get
+            {
+                return population;
+            }
+            // try with private set
+            set
+            {
+                population = value;
+            }
+        }
+
+        //public List<Actor> Actors { get; set; }
     }
 
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
             Country usa = new Country("Usa");
             Country germany = new Country("Germany");
             Country spain = new Country("Spain");
-            Country australia = new Country() 
+            Country australia = new Country()
             {
                 Name = "Australia"
             };
-            Country uk = new Country 
+            Country uk = new Country
             {
                 Name = "UK"
             };
+
+            uk.Population = 500000;
+
+            Console.WriteLine($"{uk.Name} + - + {uk.Population}");
 
             List<Country> countriesInitialList = new List<Country>()
             {
@@ -334,7 +353,7 @@ namespace OOPCrashCourse
             var countryOfTheFirstActor = concatenatedListOfCountries
                 .FirstOrDefault(c => c.Name == firstActor.Country.Name);
 
-            countryOfTheFirstActor.Actors.Add(firstActor);
+            //countryOfTheFirstActor.Actors.Add(firstActor);
 
             string firstActorInformation = firstActor.ToString();
             Console.WriteLine(firstActorInformation);
@@ -361,7 +380,7 @@ namespace OOPCrashCourse
             var countryOfTheSecondActor = concatenatedListOfCountries
                 .FirstOrDefault(c => c.Name == secondActor.Country.Name);
 
-            countryOfTheSecondActor.Actors.Add(secondActor);
+            //countryOfTheSecondActor.Actors.Add(secondActor);
 
             string secondActorInformation = secondActor.ToString();
             Console.WriteLine(secondActorInformation);
@@ -378,7 +397,7 @@ namespace OOPCrashCourse
             var countryOfTheThirdActor = concatenatedListOfCountries
                 .FirstOrDefault(c => c.Name == thirdActor.Country.Name);
 
-            countryOfTheThirdActor.Actors.Add(thirdActor);
+            //countryOfTheThirdActor.Actors.Add(thirdActor);
 
             string thirdActorInformation = thirdActor.ToString();
             Console.WriteLine(thirdActorInformation);
@@ -394,7 +413,7 @@ namespace OOPCrashCourse
             var countryOfTheFourthActor = concatenatedListOfCountries
                 .FirstOrDefault(c => c.Name == fourthActor.Country.Name);
 
-            countryOfTheFourthActor.Actors.Add(fourthActor);
+            //countryOfTheFourthActor.Actors.Add(fourthActor);
 
             string fourthActorInformation = fourthActor.ToString();
             Console.WriteLine(fourthActorInformation);
@@ -409,7 +428,7 @@ namespace OOPCrashCourse
             var countryOfTheFifthActor = concatenatedListOfCountries
                 .FirstOrDefault(c => c.Name == fifthActor.Country.Name);
 
-            countryOfTheFifthActor.Actors.Add(fifthActor);
+            //countryOfTheFifthActor.Actors.Add(fifthActor);
 
             string fifthActorInformation = fifthActor.ToString();
             Console.WriteLine(fifthActorInformation);

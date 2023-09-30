@@ -16,14 +16,14 @@ namespace OOPCrashCourse
 
         public string lastName;
 
-        public Person(): base()
+        public Person()
         {
             Id = Guid.NewGuid().ToString().Substring(0, 7);
             CreatedOn = DateTime.Now;
         }
 
         public Person(string firstName, string lastName) 
-            : base()
+            : this()
         {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -101,7 +101,7 @@ namespace OOPCrashCourse
 
         public override string ToString()
         {
-            return $"Info : First Name - {FirstName}, Last Name : {LastName}";
+            return $"Info : First Name - {FirstName}, Last Name : {LastName} ";
         }
     }
 
@@ -158,7 +158,7 @@ namespace OOPCrashCourse
             } 
             set
             {
-                if (value < 1 && value > 110)
+                if (value < 1 || value > 110)
                 {
                     throw new ArgumentOutOfRangeException($"Invalid {this.GetType().Name}");
                 }
@@ -247,10 +247,12 @@ namespace OOPCrashCourse
             Country usa = new Country("Usa");
             Country germany = new Country("Germany");
             Country spain = new Country("Spain");
+
             Country australia = new Country()
             {
                 Name = "Australia"
             };
+
             Country uk = new Country
             {
                 Name = "UK"
@@ -317,11 +319,12 @@ namespace OOPCrashCourse
             }
 
             var countriesWithMoreThanSixCharacters = concatenatedListOfCountries
-                    .Any(c => c.Name.Length > 6);
+                 .Any(c => c.Name.Length > 6);
 
             if (countriesWithMoreThanSixCharacters)
             {
                 Console.WriteLine("Yes, there are");
+
                 var targetCountries = concatenatedListOfCountries
                     .Where(c => c.Name.Length > 6)
                     .ToList();
@@ -395,7 +398,7 @@ namespace OOPCrashCourse
             thirdActor.IsPopular = true;
 
             var countryOfTheThirdActor = concatenatedListOfCountries
-                .FirstOrDefault(c => c.Name == thirdActor.Country.Name);
+                .Where(c => c.Name == thirdActor.Country.Name).FirstOrDefault();
 
             //countryOfTheThirdActor.Actors.Add(thirdActor);
 
@@ -418,10 +421,13 @@ namespace OOPCrashCourse
             string fourthActorInformation = fourthActor.ToString();
             Console.WriteLine(fourthActorInformation);
 
-            Actor fifthActor = new Actor("Gaten", "Matarazzo", 20, 700000, concatenatedListOfCountries[0], false);
-            fifthActor.BirthDate = new DateTime(2001, 5, 4);
-            fifthActor.Biography = "Eleven in Stranger Things";
-            fifthActor.Country = concatenatedListOfCountries.ElementAt(0);
+            Actor fifthActor = new Actor("Gaten", "Matarazzo", 20, 700000, concatenatedListOfCountries[0], false)
+            {
+                BirthDate = new DateTime(2001, 5, 4),
+                Biography = "Eleven in Stranger Things",
+                Country = concatenatedListOfCountries.ElementAt(0)
+            };
+
             fifthActor.Whereabouts = fifthActor.Country.Name + " "
                 + "lives in Hawkins";
 
